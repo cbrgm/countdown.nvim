@@ -77,10 +77,10 @@ M.get_time = get_time
 function M.setup(c)
   vim.api.nvim_create_user_command("CountdownStop", function()
     M.stop_countdown()
-  end, { nargs = '?' })
+  end, { nargs = 0 })
   vim.api.nvim_create_user_command("CountdownResume", function()
     M.resume_countdown()
-  end, { nargs = '?' })
+  end, { nargs = 0 })
   vim.api.nvim_create_user_command("CountdownStart", function(args)
     local minutes = args["args"] or nil
     if minutes == nil then
@@ -91,7 +91,7 @@ function M.setup(c)
   end, { nargs = '?' })
   vim.api.nvim_create_user_command("CountdownTime", function()
     print(M.get_time())
-  end, { nargs = '?' })
+  end, { nargs = 0 })
   config = vim.tbl_deep_extend('force', config, c)
 end
 
