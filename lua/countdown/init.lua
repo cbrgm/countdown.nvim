@@ -41,6 +41,9 @@ end
 -- If the default number of minutes is not set or is not a positive integer, an error message will be printed.
 -- @param minutes The number of minutes for the countdown.
 local function start_countdown(minutes)
+  if minutes == nil then
+    minutes = config.default_minutes
+  end
   if minutes <= 0 and config.default_minutes then
     minutes = config.default_minutes
   end
