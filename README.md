@@ -21,16 +21,16 @@ The following lua functions are available for starting, stopping, resuming, and 
 local countdown = require('countdown')
 
 -- Starts/Resets the countdown with a specified number of minutes
-countdown.StartCountdown(minutes)
+countdown.start_countdown(minutes)
 
 -- Stop the countdown if it is currently running
-countdown.StopCountdown()
+countdown.stop_countdown()
 
 -- Resume the countdown if it is currently stopped
-countdown.ResumeCountdown()
+countdown.resume_countdown()
 
 -- Get the countdowns time as string in format hh:mm:ss
-countdown.GetTime()
+countdown.get_time()
 ```
 
 ## User Commands
@@ -38,17 +38,15 @@ countdown.GetTime()
 The following user commands are available for starting, stopping, resuming, and resetting the countdown timer:
 
 ```
-" Start the countdown for a specified number of minutes
-:Countdown start minutes
+" Start/Reset the countdown for a specified number of minutes
+:CountdownStart minutes
 
 " Stop the countdown if it is currently running
-:Countdown stop
+:CountdownStop
 
 " Resume the countdown if it is currently stopped
-:Countdown resume
+:CountdownResume
 
-" Reset the countdown with a specified number of minutes
-:Countdown reset minutes
 ```
 
 ## Default Configuration
