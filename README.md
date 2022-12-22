@@ -28,7 +28,7 @@ lualine.setup {
 	sections = {},
 	inactive_sections = {},
 	tabline = {
-    -- add the timer to the tabline bar
+	        -- add the timer to the tabline bar
 		lualine_x = { timer, "encoding", "fileformat", "filetype" },
 	},
 	winbar = {},
