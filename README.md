@@ -2,14 +2,61 @@
 
 This plugin provides a countdown timer for Neovim that can be started, stopped, resumed, and reset with either lua functions or user commands. The remaining time is displayed in the format `hh:mm:ss`.
 
+**Motivation**: My motivation for creating this plugin was to have an easy-to-use countdown timer for Pomodoro technique sessions in Nvim.
+
 ## Installation
 
 ```lua
   use { 'cbrgm/countdown.nvim', config = function()
     require("countdown").setup({
-      default_minutes = 25, -- The default minutes to use
+      default_minutes = 25, -- The default minutes to use when a countdown is started without minutes specified
     })
   end }
+```
+
+## Example usage with Lualine
+
+Sample usage displaying the countdown with [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+
+```lua
+-- function returns a formatted string hh:mm:ss
+local timer = function()
+	return require("countdown").get_time()
+end
+
+lualine.setup {
+	sections = {},
+	inactive_sections = {},
+	tabline = {
+    -- add the timer to the tabline bar
+		lualine_x = { timer, "encoding", "fileformat", "filetype" },
+	},
+	winbar = {},
+	inactive_winbar = {},
+	extensions = {},
+}
+```
+
+## Keybindings
+
+Sample key bindings:
+
+```lua
+vim.api.nvim_set_keymap('n', '<leader>ttn', function()
+	require("countdown").start_countdown(25)
+end, { desc = "Start Pomodoro session" })
+
+vim.api.nvim_set_keymap('n', '<leader>ttb', function()
+	require("countdown").start_countdown(5)
+end, { desc = "Start Pomodoro break" })
+
+vim.api.nvim_set_keymap('n', '<leader>tts', function()
+	require("countdown").stop_countdown()
+end, { desc = "Stop Countdown" })
+
+vim.api.nvim_set_keymap('n', '<leader>ttr', function()
+	require("countdown").resume_countdown()
+end, { desc = "Resume Countdown" })
 ```
 
 ## Lua Functions
@@ -50,11 +97,11 @@ The following user commands are available for starting, stopping, resuming, and 
 
 ## Default Configuration
 
-You can configure the default number of minutes to use when starting the countdown with a value less than or equal to zero, and the direction of the countdown (either "up" or "down"):
+You can configure the default number of minutes to use when starting the countdown with a value less than or equal to zero.
 
 ```lua
 countdown.setup({
-  default_minutes = 25, -- The default minutes to use
+  default_minutes = 25, -- The default minutes to use when a countdown is started without specifing minutes
 })
 ```
 
