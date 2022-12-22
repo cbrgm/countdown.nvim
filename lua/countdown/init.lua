@@ -75,10 +75,18 @@ M.StartCountdown = resetCountdown
 M.GetTime = getTime
 
 function M.setup(c)
-  vim.api.nvim_create_user_command("CountdownStop", 'StopCountdown', { nargs = '?' })
-  vim.api.nvim_create_user_command("CountdownResume", 'ResumeCountdown', { nargs = '?' })
-  vim.api.nvim_create_user_command("CountdownReset", 'ResetCountdown', { nargs = '?' })
-  vim.api.nvim_create_user_command("CountdownTime", 'GetTime', { nargs = '?' })
+  vim.api.nvim_create_user_command("CountdownStop", function()
+    M.StopCountdown()
+  end, { nargs = '?' })
+  vim.api.nvim_create_user_command("CountdownResume", function()
+    M.ResumeCountdown()
+  end, { nargs = '?' })
+  vim.api.nvim_create_user_command("CountdownReset", function(args)
+    M.StartCountdown(args)
+  end, { nargs = '?' })
+  vim.api.nvim_create_user_command("CountdownTime", function()
+    print(M.GetTime())
+  end, { nargs = '?' })
   config = vim.tbl_deep_extend('force', config, c)
 end
 
