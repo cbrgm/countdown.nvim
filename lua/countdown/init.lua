@@ -58,7 +58,7 @@ local function stop_countdown()
 end
 
 local function resume_countdown()
-  if not timer and seconds_remaining then
+  if not timer and seconds_remaining ~= 0 then
     timer = vim.loop.new_timer()
     timer:start(1000, 1000, countdown_callback)
   end
