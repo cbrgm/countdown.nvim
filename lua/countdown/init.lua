@@ -1,7 +1,7 @@
 local M = {}
 
 local timer
-local seconds_remaining
+local seconds_remaining = 0
 local config = {
   default_minutes = 25,
   countdown_direction = "down",
@@ -21,21 +21,18 @@ local function countdown_callback()
       print("Time is up!")
       timer:stop()
       timer = nil
-    else
-      print("Time remaining: " .. format_time(seconds_remaining))
     end
   else
     seconds_remaining = seconds_remaining + 1
-    print("Time elapsed: " .. format_time(seconds_remaining))
   end
 end
 
 local function getTime()
   if seconds_remaining then
     if config.countdown_direction == "down" then
-      return "Time remaining: " .. format_time(seconds_remaining)
+      return format_time(seconds_remaining)
     else
-      return "Time elapsed: " .. format_time(seconds_remaining)
+      return format_time(seconds_remaining)
     end
   end
 end
@@ -72,17 +69,17 @@ local function resetCountdown(minutes)
   startCountdown(minutes)
 end
 
-function M.setup(c)
-  vim.api.nvim_create_user_command("Countdown", "StopCountdown", { nargs = 0 })
-  vim.api.nvim_create_user_command("Countdown", "ResumeCountdown", { nargs = 0 })
-  vim.api.nvim_create_user_command("Countdown", "ResetCountdown", { nargs = 1 })
-  vim.api.nvim_create_user_command("Countdown", "GetTime", { nargs = 0 })
-  config = vim.tbl_deep_extend('force', config, c)
-end
-
 M.StopCountdown = stopCountdown
 M.ResumeCountdown = resumeCountdown
 M.StartCountdown = resetCountdown
 M.GetTime = getTime
+
+function M.setup(c)
+  vim.api.nvim_create_user_command("CountdownStop", M.StopCountdown, { nargs = 0 })
+  vim.api.nvim_create_user_command("CountdownResume", M.ResumeCountdown, { nargs = 0 })
+  vim.api.nvim_create_user_command("CountdownReset", M.ResetCountdown, { nargs = 1 })
+  vim.api.nvim_create_user_command("CountdownTime", M.GetTime, { nargs = 0 })
+  config = vim.tbl_deep_extend('force', config, c)
+end
 
 return M
