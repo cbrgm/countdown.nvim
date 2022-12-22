@@ -73,10 +73,10 @@ local function resetCountdown(minutes)
 end
 
 function M.setup(c)
-  vim.api.nvim_create_user_command("Countdown", "StopCountdown", { nargs = "0" })
-  vim.api.nvim_create_user_command("Countdown", "ResumeCountdown", { nargs = "0" })
-  vim.api.nvim_create_user_command("Countdown", "ResetCountdown", { nargs = "1" })
-  vim.api.nvim_create_user_command("Countdown", "GetTime", { nargs = "0" })
+  vim.api.nvim_create_user_command("Countdown", "StopCountdown", { nargs = 0 })
+  vim.api.nvim_create_user_command("Countdown", "ResumeCountdown", { nargs = 0 })
+  vim.api.nvim_create_user_command("Countdown", "ResetCountdown", { nargs = 1 })
+  vim.api.nvim_create_user_command("Countdown", "GetTime", { nargs = 0 })
   config = vim.tbl_deep_extend('force', config, c)
 end
 

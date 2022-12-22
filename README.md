@@ -4,7 +4,7 @@ This plugin provides a countdown timer for Neovim that can be started, stopped, 
 
 ## Installation
 
-```
+```lua
 use {'cbrgm/countdown.nvim', config = function()
   countdown.setup({
     default_minutes = 25, -- The default minutes to use
@@ -65,4 +65,3 @@ countdown.setup({
 ## License
 
 This plugin is licensed under the MIT License. See the LICENSE file for details.
-```
