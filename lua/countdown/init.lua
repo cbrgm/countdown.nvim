@@ -86,7 +86,7 @@ function M.setup(c)
     if not minutes then
       M.start_countdown(config.default_minutes)
     else
-      M.start_countdown(minutes)
+      M.start_countdown(tonumber(minutes))
     end
   end, { nargs = '?' })
   vim.api.nvim_create_user_command("CountdownTime", function()
