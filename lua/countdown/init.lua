@@ -30,7 +30,7 @@ end
 -- Gets the current time remaining in the countdown.
 -- @return A string in the format "HH:MM:SS" if the countdown is ongoing, or nil if the countdown is not ongoing.
 local function get_time()
-  if seconds_remaining then
+  if seconds_remaining > 0 then
     return format_time(seconds_remaining)
   end
   return ""
