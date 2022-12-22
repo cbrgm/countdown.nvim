@@ -8,7 +8,6 @@ This plugin provides a countdown timer for Neovim that can be started, stopped, 
   use { 'cbrgm/countdown.nvim', config = function()
     require("countdown").setup({
       default_minutes = 25, -- The default minutes to use
-      countdown_direction = "down", -- The direction, whether to count "up" or "down"
     })
   end }
 ```
@@ -56,7 +55,6 @@ You can configure the default number of minutes to use when starting the countdo
 ```lua
 countdown.setup({
   default_minutes = 25, -- The default minutes to use
-  countdown_direction = "down", -- The direction, whether to count "up" or "down"
 })
 ```
 
